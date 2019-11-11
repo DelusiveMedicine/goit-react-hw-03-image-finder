@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './SearchForm.module.css';
 
-const SearchForm = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit, onChange, value }) => {
   const { searchForm } = styles;
   return (
-    <form className={searchForm}>
+    <form className={searchForm} onSubmit={onSubmit}>
       <input
-        onSubmit={onSubmit}
+        onChange={onChange}
         type="text"
-        autocomplete="off"
+        autoComplete="off"
         placeholder="Search images..."
+        value={value}
       />
     </form>
   );
