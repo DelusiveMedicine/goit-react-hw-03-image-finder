@@ -5,9 +5,10 @@ import Modal from '../Modal/Modal';
 class PhotoCard extends Component {
   state = { isShown: false };
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      isShown: !prevState.isShown,
+  toggleModal = ({event}) => {
+    if(target.className.includes("overlay"))
+      this.setState(({isShown}) => ({
+      isShown: !isShown,
     }));
   };
 
@@ -28,7 +29,9 @@ class PhotoCard extends Component {
       downloads,
       largeImageURL,
     } = this.props;
+    
     const { isShown } = this.state;
+    
     return (
       <Fragment>
         {isShown && (
