@@ -6,7 +6,7 @@ class PhotoCard extends Component {
   state = { isShown: false };
 
   toggleModal = ({event}) => {
-    if(target.className.includes("overlay"))
+    if(target.className.includes("overlay") || keyCode === 27)
       this.setState(({isShown}) => ({
       isShown: !isShown,
     }));
