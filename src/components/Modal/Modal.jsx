@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { Component, createRef } from 'react';
 import styles from './Modal.module.css';
 
-const Modal = ({ image, alt, toggleModal }) => {
-  const { overlay, modal } = styles;
-  return (
-    <div className={overlay} onClick={toggleModal}>
-      <div className={modal}>
-        <img src={image} alt={alt} />
+class Modal extends Component {
+  ref = createRef();
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleToggle);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleToggle);
+  }
+
+  handleToggle = event => {
+    event.preventDefault();
+    const { target, keyCode } = event;
+    const { current } = this.ref;
+    const { toggleModal } = this.props;
+
+    if (keyCode === 27 || target === current) toggleModal();
+  };
+
+  render() {
+    const { image, alt } = this.props;
+    const { overlay, modal } = styles;
+    return (
+      <div className={overlay} onClick={this.handleToggle} ref={this.ref}>
+        <div className={modal}>
+          <img src={image} alt={alt} />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 export default Modal;

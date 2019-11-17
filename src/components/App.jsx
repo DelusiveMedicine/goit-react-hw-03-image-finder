@@ -18,17 +18,10 @@ class App extends Component {
     });
   }
 
-//   componentDidUpdate(prevProps, prevState) {
-//     const { query } = this.state;
-//     if (query && query !== prevState.query) {
-//       this.setState({ currentQuery: query });
-//     }
-//   }
-
   handleChange = event => {
     const target = event.target;
     const value = target.value;
-    this.setState({ query: value, page: 1 });
+    this.setState({ query: value });
   };
 
   handleSubmit = event => {
@@ -43,11 +36,12 @@ class App extends Component {
 
   loadItems = () => {
     const { currentQuery, page } = this.state;
-    
+
     fetchData(currentQuery, page + 1)
       .then(({ data }) => {
         this.setState(prevState => ({
-          data: [...prevState.data, ...data.hits], page: page + 1,
+          data: [...prevState.data, ...data.hits],
+          page: page + 1,
         }));
       })
       .then(this.handleScroll);
@@ -72,10 +66,12 @@ class App extends Component {
           value={query}
         />
         {data.length ? (
-          <Gallery items={data} />
-          <button type="button" className={button} onClick={this.loadItems}>
-            Load more
-          </button>
+          <>
+            <Gallery items={data} />
+            <button type="button" className={button} onClick={this.loadItems}>
+              Load more
+            </button>
+          </>
         ) : (
           <h1>No results found for your query</h1>
         )}

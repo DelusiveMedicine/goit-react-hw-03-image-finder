@@ -5,9 +5,8 @@ import Modal from '../Modal/Modal';
 class PhotoCard extends Component {
   state = { isShown: false };
 
-  toggleModal = ({event}) => {
-    if(target.className.includes("overlay") || keyCode === 27)
-      this.setState(({isShown}) => ({
+  toggleModal = () => {
+    this.setState(({ isShown }) => ({
       isShown: !isShown,
     }));
   };
@@ -29,9 +28,9 @@ class PhotoCard extends Component {
       downloads,
       largeImageURL,
     } = this.props;
-    
+
     const { isShown } = this.state;
-    
+
     return (
       <Fragment>
         {isShown && (
