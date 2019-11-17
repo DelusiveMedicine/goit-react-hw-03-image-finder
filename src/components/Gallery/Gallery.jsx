@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Gallery.module.css';
 import PhotoCard from '../PhotoCard/PhotoCard';
 
@@ -13,6 +14,11 @@ const Gallery = ({ items, showModal }) => {
       ))}
     </ul>
   );
+};
+
+Gallery.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object),
+  showModal: PropTypes.func,
 };
 
 export default Gallery;

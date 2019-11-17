@@ -1,7 +1,14 @@
 import React, { Component, createRef } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 
 class Modal extends Component {
+  static propTypes = {
+    toggleModal: PropTypes.func,
+    image: PropTypes.string,
+    alt: PropTypes.string,
+  };
+
   ref = createRef();
 
   componentDidMount() {

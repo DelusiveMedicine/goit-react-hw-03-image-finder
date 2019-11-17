@@ -1,8 +1,19 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styles from './PhotoCard.module.css';
 import Modal from '../Modal/Modal';
 
 class PhotoCard extends Component {
+  static propTypes = {
+    webformatURL: PropTypes.string,
+    tags: PropTypes.string,
+    likes: PropTypes.number,
+    views: PropTypes.number,
+    comments: PropTypes.number,
+    downloads: PropTypes.number,
+    largeImageURL: PropTypes.string,
+  };
+
   state = { isShown: false };
 
   toggleModal = () => {
@@ -19,6 +30,7 @@ class PhotoCard extends Component {
       fullscreenButton,
       galleryItem,
     } = styles;
+
     const {
       webformatURL,
       tags,
